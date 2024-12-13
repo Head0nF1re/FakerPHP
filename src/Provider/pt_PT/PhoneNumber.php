@@ -7,12 +7,12 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * Returns the pt_PT phone country code.
      */
-    const COUNTRY_CODE = '+351';
+    public const COUNTRY_CODE = '+351';
 
     /**
      * pt_PT Mobile Service Codes
      */
-    protected static $mobileServiceCode = [
+    public const MOBILE_SERVICE_CODE = [
         91,
         92,
         93,
@@ -22,7 +22,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * pt_PT Geographic Area Codes
      */
-    protected static $areaCode = [
+    public const AREA_CODE = [
         21,
         22,
         23,
@@ -37,20 +37,9 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     /**
      * pt_PT Geographic Area and Mobile Service Codes
      */
-    protected static $areaOrMobileServiceCode = [
-        91,
-        92,
-        93,
-        96,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
+    public const AREA_OR_MOBILE_SERVICE_CODE = [
+        ...self::MOBILE_SERVICE_CODE,
+        ...self::AREA_CODE,
     ];
 
     /**
@@ -88,17 +77,17 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
 
     public static function areaOrMobileServiceCode()
     {
-        return self::randomElement(static::$areaOrMobileServiceCode);
+        return self::randomElement(static::AREA_OR_MOBILE_SERVICE_CODE);
     }
 
     public static function areaCode()
     {
-        return self::randomElement(static::$areaCode);
+        return self::randomElement(static::AREA_CODE);
     }
 
     public static function mobileServiceCode()
     {
-        return self::randomElement(static::$mobileServiceCode);
+        return self::randomElement(static::MOBILE_SERVICE_CODE);
     }
 
     /**
