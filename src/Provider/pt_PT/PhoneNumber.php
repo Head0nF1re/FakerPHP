@@ -5,12 +5,12 @@ namespace Faker\Provider\pt_PT;
 class PhoneNumber extends \Faker\Provider\PhoneNumber
 {
     /**
-     * Returns the pt_PT phone country code.
+     * Phone country code.
      */
     public const COUNTRY_CODE = '+351';
 
     /**
-     * pt_PT Mobile Service Codes
+     * Mobile Service Codes
      */
     public const MOBILE_SERVICE_CODE = [
         91,
@@ -20,7 +20,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     ];
 
     /**
-     * pt_PT Geographic Area Codes
+     * Geographic Area Codes
      */
     public const AREA_CODE = [
         21,
@@ -35,24 +35,24 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     ];
 
     /**
-     * pt_PT Geographic Area and Mobile Service Codes
+     * Geographic Area and Mobile Service Codes
      */
-    public const AREA_OR_MOBILE_SERVICE_CODE = [
-        ...self::MOBILE_SERVICE_CODE,
+    public const AREA_AND_MOBILE_SERVICE_CODE = [
         ...self::AREA_CODE,
+        ...self::MOBILE_SERVICE_CODE,
     ];
 
     /**
      * @see http://en.wikipedia.org/wiki/Telephone_numbers_in_Portugal
      */
     protected static $formats = [
-        '{{countryCode}} {{areaOrMobileServiceCode}}#######',
+        '{{countryCode}} {{areaAndMobileServiceCode}}#######',
         '{{mobileServiceCode}}#######',
         '{{areaCode}}#######',
     ];
 
     protected static $e164Formats = [
-        '{{countryCode}}{{areaOrMobileServiceCode}}#######',
+        '{{countryCode}}{{areaAndMobileServiceCode}}#######',
     ];
 
     protected static $e164MobileFormat = [
@@ -75,23 +75,23 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         return static::numerify(static::randomElement(static::$mobileNumberPrefixes));
     }
 
-    public static function areaOrMobileServiceCode()
+    public static function areaAndMobileServiceCode()
     {
-        return self::randomElement(static::AREA_OR_MOBILE_SERVICE_CODE);
+        return static::randomElement(self::AREA_AND_MOBILE_SERVICE_CODE);
     }
 
     public static function areaCode()
     {
-        return self::randomElement(static::AREA_CODE);
+        return static::randomElement(self::AREA_CODE);
     }
 
     public static function mobileServiceCode()
     {
-        return self::randomElement(static::MOBILE_SERVICE_CODE);
+        return static::randomElement(self::MOBILE_SERVICE_CODE);
     }
 
     /**
-     * Returns the pt_PT phone country code.
+     * Returns the phone country code.
      *
      * @return string
      */
@@ -101,8 +101,8 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     }
 
     /**
-     * Returns a pt_PT mobile number in E.164 format.
-     * 
+     * Returns a mobile number in E.164 format.
+     *
      * Example: +35193XXXXXXX
      *
      * @return string
@@ -113,8 +113,8 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     }
 
     /**
-     * Returns a pt_PT landline number in E.164 format.
-     * 
+     * Returns a landline number in E.164 format.
+     *
      * Example: +35121XXXXXXX
      *
      * @return string
